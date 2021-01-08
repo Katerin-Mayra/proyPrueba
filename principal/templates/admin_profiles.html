@@ -1,0 +1,79 @@
+{% extends 'pagina.html' %}
+
+{% block user %}
+    {{user}}
+{% endblock %}
+
+{% block principal %}
+    {% url 'inicio' id=nombre_usuario %}
+{% endblock %}
+
+{% block lista_perfiles %}
+    {% url 'perfiles' id=nombre_usuario %}
+{% endblock %}
+
+{% block pag2 %}
+    <a href="{% url 'crear_user' id=nombre_usuario %}">Crear Usuario</a>
+{% endblock %}
+
+{% block pag3 %}
+    <a href="{% url 'crear_perfil_admin' id=nombre_usuario %}">Crear Perfil</a>
+{% endblock %}
+
+{% block perfil %}
+    <a href="{% url 'crear_perfil' id=nombre_usuario %}">
+{% endblock %}
+
+{% block nombre_user %}
+    {{nombre_usuario}}
+{% endblock %}
+
+{% block bienvenida %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-user"></i> Lista de Perfiles </h3>
+                </div>
+                <div class="panel-body">
+                    <!--div id="shieldui-grid1"></div>-->
+                    <table class="table table_center">
+                        <thead>
+                            <tr class="table100-head">
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Telefono</th>
+                                <th>CI</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for profile in profiles %}
+                            <tr>
+                                <td> {{ profile.name }} </td>
+                                <td> {{ profile.last_name }} </td>
+                                <td> {{ profile.email }} </td>
+                                <td> {{ profile.phone }} </td>
+                                <td> {{ profile.ci }} </td>
+                                <td >
+                                    <div class="btn btn-info btn-block btn-sm">
+                                        <a href="{% url 'editar_profile' nombre_usuario profile.id %}">Editar</a>  
+                                    </div>
+                                    <div class="btn btn-primary btn-block btn-sm">
+                                        <a href="{% url 'borrar_profile' nombre_usuario profile.id %}">Eliminar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'pagina.html' %}
+
+{% block user %}
+    {{user}}
+{% endblock %}
+
+{% block principal %}
+    {% url 'inicio' id=nombre_usuario %}
+{% endblock %}
+
+{% block lista_perfiles %}
+    {% url 'perfiles' id=nombre_usuario %}
+{% endblock %}
+
+{% block pag2 %}
+    <a href="{% url 'crear_user' id=nombre_usuario %}">Crear Usuario</a>
+{% endblock %}
+
+{% block pag3 %}
+    <a href="{% url 'crear_perfil_admin' id=nombre_usuario %}">Crear Perfil</a>
+{% endblock %}
+
+
+{% block perfil %}
+    <a href="{% url 'crear_perfil' id=nombre_usuario %}">
+{% endblock %}
+
+{% block nombre_user %}
+    {{nombre_usuario}}
+{% endblock %}
+
+{% block bienvenida %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-user"></i> Registrar Perfil </h3>
+                </div>
+                <div class="panel-body">
+                    <!--div id="shieldui-grid1"></div>-->
+                    <form action="{% url 'crear_perfil_admin' nombre_usuario %}" method="POST" class="">
+                    <table class="table table_center">
+                        <tbody>
+                                {% csrf_token %}
+                                {% for field in form %}  
+                                        <tr>
+                                            <th><label>{{ field.label }}</label></th>
+                                            <th>{{ field }}</th>
+                                        </tr>
+                                {% endfor %} 
+
+                                
+                        </tbody>
+                        
+                    </table>
+                    <input type="submit" value="Registrar Perfil" class="btn btn-primary btn-block">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

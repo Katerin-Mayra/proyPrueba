@@ -1,0 +1,69 @@
+{% extends 'pagina.html' %}
+
+{% block user %}
+    {{user}}
+{% endblock %}
+
+{% block principal %}
+    {% url 'inicio' id=nombre_usuario %}
+{% endblock %}
+
+{% block lista_perfiles %}
+    {% url 'perfiles' id=nombre_usuario %}
+{% endblock %}
+
+{% block pag2 %}
+    <a href="{% url 'crear_user' id=nombre_usuario %}">Crear Usuario</a>
+{% endblock %}
+
+{% block pag3 %}
+    <a href="{% url 'crear_perfil_admin' id=nombre_usuario %}">Crear Perfil</a>
+{% endblock %}
+
+{% block perfil %}
+    <a href="{% url 'crear_perfil' id=nombre_usuario %}">
+{% endblock %}
+
+{% block nombre_user %}
+    {{nombre_usuario}}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-user"></i> Perfil {{nombre_usuario}} </h3>
+                </div>
+                <div class="panel-body">
+                    <!--div id="shieldui-grid1"></div>-->
+                    <table class="table table_center">
+                        <tbody>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>{{profile.name}}</th>
+                            </tr>
+                            <tr>
+                                <th>Apellido</th>
+                                <th>{{profile.last_name}}</th>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <th>{{profile.email}}</th>
+                            </tr>
+                            <tr>
+                                <th>Telefono</th>
+                                <th>{{profile.phone}}</th>
+                            </tr>
+                            <tr>
+                                <th>CI</th>
+                                <th>{{profile.ci}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

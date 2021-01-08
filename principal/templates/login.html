@@ -1,0 +1,36 @@
+{% load static %}
+<!-- add bootstrap cdn -->
+<link rel="stylesheet" type="text/css" href="{% static 'login/css/login.css' %}">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.4/css/bootstrap.min.css">
+
+<div>
+    <div class="login-form col-md-4 offset-md-4">
+        <h1 class="tittle">Login</h1>
+        
+        <form action="{% url 'verificar' %}" method="POST">
+
+            {% csrf_token %}
+            <div class="form-group">
+                <label>UserName</label>
+                <input type="text" name="username" id="" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" name="password" id="" class="form-control">
+            </div>
+            <!-- 
+            <div class="form-group">
+                <input type="checkbox">Remember me
+            </div>
+             -->
+            
+            <!--
+            <button class="btn btn-primary btn-block">Login</button>
+            -->
+            <input type="submit" value="Login" class="btn btn-primary btn-block">
+        </form>
+    </div>
+</div>
+
+

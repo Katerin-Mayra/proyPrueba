@@ -1,0 +1,25 @@
+{% extends 'pagina.html' %}
+
+{% block user %}
+    {{user}}
+{% endblock %}
+
+{% block principal %}
+    {% url 'inicio' id=nombre_usuario %}
+{% endblock %}
+
+{% block lista_perfiles %}
+    {% url 'perfiles' id=nombre_usuario %}
+{% endblock %}
+
+{% block perfil %}
+    <a href="{% url 'crear_perfil' id=nombre_usuario %}">
+{% endblock %}
+
+{% block nombre_user %}
+    {{nombre_usuario}}
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
