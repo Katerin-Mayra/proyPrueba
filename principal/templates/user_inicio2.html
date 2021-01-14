@@ -1,0 +1,15 @@
+{% extends 'pagina.html' %}
+
+
+<!--bloque de nombre de bienvenida-->
+{% block user %}
+    {{request.user.first_name}}  {{request.user.last_name}}
+{% endblock %}
+<!--bloque de pestaña desplegable-->
+{% block nombre_user %}
+    {{request.user.username}}
+{% endblock %}
+<!--bloques de barra de opciones-->
+{% block principal %}
+    {% url 'inicio' %}
+{% endblock %}

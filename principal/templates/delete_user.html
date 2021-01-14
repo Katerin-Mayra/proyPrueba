@@ -37,29 +37,17 @@
 
 {% block content %}
     <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-10">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-user"></i> Registrar Perfil </h3>
+                    <h3 class="panel-title"><i class="fa fa-user"></i> Confirmacion </h3>
                 </div>
                 <div class="panel-body">
-                    <!--div id="shieldui-grid1"></div>-->
-                    <form action="{% url 'crear_perfil_admin' %}" method="POST" class="">
-                    <table class="table table_center">
-                        <tbody>
-                                {% csrf_token %}
-                                {% for field in form %}  
-                                        <tr>
-                                            <th><label>{{ field.label }}</label></th>
-                                            <th>{{ field }}</th>
-                                        </tr>
-                                {% endfor %} 
-
-                                
-                        </tbody>
-                        
-                    </table>
-                    <input type="submit" value="Registrar Perfil" class="btn btn-primary btn-block">
+                    <form method='post'>
+                        {% csrf_token %}
+                        <h3>Desea eliminar el usuario {{ object_list.username }} de la lista? </h3>
+                        <button class="btn btn-danger" type='submit'>Si, eliminar</button>
+                        <a class='btn btn-default' href="{% url 'usuarios' %}">Cancelar</a>
                     </form>
                 </div>
             </div>

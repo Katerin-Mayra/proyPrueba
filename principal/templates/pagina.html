@@ -31,13 +31,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Pagina de Inicio</a>    <!--"../inicio/{% block qwerty %}{% endblock %}/"-->
+                <a class="navbar-brand" href="">Pagina de Inicio</a>
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul id="active" class="nav navbar-nav side-nav">
 
                     <li>
                         <a href="{% block principal %}{% endblock %}"> Principal</a>
+                    </li>
+                    
+                    <li>
+                        <a href="{% block lista_usuarios %}{% endblock %}"> Usuarios</a>
                     </li>
 
                     <li>

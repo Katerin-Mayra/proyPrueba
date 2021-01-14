@@ -1,25 +1,38 @@
 {% extends 'pagina.html' %}
 
+<!--perfil de usuario-->
+{% block perfil %}
+    <a href="{% url 'crear_perfil' request.user.username %}">
+{% endblock %}
+<!--bloque de nombre de bienvenida-->
 {% block user %}
-    {{user}}
+    {{request.user.first_name}}  {{request.user.last_name}}
+{% endblock %}
+<!--bloque de pestaña desplegable-->
+{% block nombre_user %}
+    {{request.user.username}}
+{% endblock %}
+<!--bloques de barra de opciones-->
+{% block principal %}
+    {% url 'inicio' %}
 {% endblock %}
 
-{% block principal %}
-    {% url 'inicio' id=nombre_usuario %}
+{% if request.user.is_superuser %}
+
+{% block lista_usuarios %}
+    {% url 'usuarios' %}
 {% endblock %}
 
 {% block lista_perfiles %}
-    {% url 'perfiles' id=nombre_usuario %}
+    {% url 'perfiles' %}
 {% endblock %}
 
-{% block perfil %}
-    <a href="{% url 'crear_perfil' id=nombre_usuario %}">
+{% block pag2 %}
+    <a href="{% url 'crear_user' %}">Crear Usuario</a>
 {% endblock %}
 
-{% block nombre_user %}
-    {{nombre_usuario}}
+{% block pag3 %}
+    <a href="{% url 'crear_perfil_admin' %}">Crear Perfil</a>
 {% endblock %}
 
-{% block content %}
-
-{% endblock %}
+{% endif %}

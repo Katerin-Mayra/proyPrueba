@@ -1,31 +1,38 @@
 {% extends 'pagina.html' %}
-
+<!--perfil de usuario-->
+{% block perfil %}
+    <a href="{% url 'crear_perfil' request.user.username %}">
+{% endblock %}
+<!--bloque de nombre de bienvenida-->
 {% block user %}
-    {{user}}
+    {{request.user.first_name}}  {{request.user.last_name}}
+{% endblock %}
+<!--bloque de pestaña desplegable-->
+{% block nombre_user %}
+    {{request.user.username}}
+{% endblock %}
+<!--bloques de barra de opciones-->
+{% block principal %}
+    {% url 'inicio' %}
 {% endblock %}
 
-{% block principal %}
-    {% url 'inicio' id=nombre_usuario %}
+{% block lista_usuarios %}
+    {% url 'usuarios' %}
 {% endblock %}
 
 {% block lista_perfiles %}
-    {% url 'perfiles' id=nombre_usuario %}
+    {% url 'perfiles' %}
 {% endblock %}
 
 {% block pag2 %}
-    <a href="{% url 'crear_user' id=nombre_usuario %}">Crear Usuario</a>
+    <a href="{% url 'crear_user' %}">Crear Usuario</a>
 {% endblock %}
 
 {% block pag3 %}
-    <a href="{% url 'crear_perfil_admin' id=nombre_usuario %}">Crear Perfil</a>
+    <a href="{% url 'crear_perfil_admin' %}">Crear Perfil</a>
 {% endblock %}
 
-{% block perfil %}
-    <a href="{% url 'crear_perfil' id=nombre_usuario %}">
-{% endblock %}
-
-{% block nombre_user %}
-    {{nombre_usuario}}
+{% block bienvenida %}
 {% endblock %}
 
 {% block content %}
@@ -42,20 +49,23 @@
                             <tr class="table100-head">
                                 <th >Usuario</th>
                                 <th >Email</th>
+                                <th >Admin</th>
                                 <th >Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {% for user in users %}
+                        <!--la clase vista envia los datos como un object_list-->
+                        {% for user in object_list %}
                             <tr>
                                 <td > {{ user.username }} </td>
                                 <td > {{ user.email }} </td>
+                                <td > {{ user.is_superuser }} </td>
                                 <td >
                                     <div class="btn btn-info btn-block btn-sm">
-                                        <a href="">Editar</a>  
+                                        <a href="{% url 'editar_user' user.pk %}">Editar</a>  
                                     </div>
                                     <div class="btn btn-primary btn-block btn-sm">
-                                        <a href="{% url 'borrar_user' id=nombre_usuario id_user=user.pk %}">Eliminar</a>
+                                        <a href="{% url 'borrar_user' user.pk %}">Eliminar</a>
                                     </div>
                                 </td>
                             </tr>

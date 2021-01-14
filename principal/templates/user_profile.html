@@ -1,37 +1,41 @@
 {% extends 'pagina.html' %}
 
+<!--perfil de usuario-->
+{% block perfil %}
+    <a href="{% url 'crear_perfil' request.user.username %}">
+{% endblock %}
+<!--bloque de nombre de bienvenida-->
 {% block user %}
-    {{user}}
+    {{request.user.first_name}}  {{request.user.last_name}}
+{% endblock %}
+<!--bloque de pestaña desplegable-->
+{% block nombre_user %}
+    {{request.user.username}}
+{% endblock %}
+<!--bloques de barra de opciones-->
+{% block principal %}
+    {% url 'inicio' %}
 {% endblock %}
 
-{% block principal %}
-    {% url 'inicio' id=nombre_usuario %}
+{% if request.user.is_superuser %}
+
+{% block lista_usuarios %}
+    {% url 'usuarios' %}
 {% endblock %}
 
 {% block lista_perfiles %}
-    {% url 'perfiles' id=nombre_usuario %}
+    {% url 'perfiles' %}
 {% endblock %}
 
 {% block pag2 %}
-    <a href="{% url 'crear_user' id=nombre_usuario %}">Crear Usuario</a>
+    <a href="{% url 'crear_user' %}">Crear Usuario</a>
 {% endblock %}
 
 {% block pag3 %}
-    <a href="{% url 'crear_perfil_admin' id=nombre_usuario %}">Crear Perfil</a>
+    <a href="{% url 'crear_perfil_admin' %}">Crear Perfil</a>
 {% endblock %}
 
-
-{% block perfil %}
-    <a href="{% url 'crear_perfil' id=nombre_usuario %}">
-{% endblock %}
-
-{% block nombre_user %}
-    {{nombre_usuario}}
-{% endblock %}
-
-{% block bienvenida %}
-{% endblock %}
-
+{% endif %}
 {% block content %}
     <div class="row">
         <div class="col-lg-7">
@@ -41,7 +45,7 @@
                 </div>
                 <div class="panel-body">
                     <!--div id="shieldui-grid1"></div>-->
-                    <form action="{% url 'crear_perfil' nombre_usuario %}" method="POST" class="">
+                    <form action="{% url 'crear_perfil' request.user.username %}" method="POST" class="">
                     <table class="table table_center">
                         <tbody>
                                 {% csrf_token %}
